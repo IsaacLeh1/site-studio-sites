@@ -1,6 +1,3 @@
-# Site Studio Sites
-
-Combined sites, one per subfolder.
-# Site Studio Sites
+# Sites
 
 Combined sites, one per subfolder.
