@@ -1,0 +1,60 @@
+/* Site Studio — card & image effects (v4). Safe to edit or delete.
+   fx-hover-*  : effect appears while the mouse is over the card
+   fx-always-* : effect is permanently on
+   fx-invert-* : effect is on, and hovering turns it off
+   fx-motion-* : gentle movement for photos (Images tab)
+   Effects stack: each drives its own variable, so a card can lift AND glow
+   AND fade, each with its own trigger. */
+.fx-hover-lift,.fx-always-lift,.fx-invert-lift,
+.fx-hover-grow,.fx-always-grow,.fx-invert-grow,
+.fx-hover-glow,.fx-always-glow,.fx-invert-glow,
+.fx-hover-fade,.fx-always-fade,.fx-invert-fade{
+  transform:translateY(var(--fx-ty,0)) scale(var(--fx-sc,1)) !important;
+  box-shadow:var(--fx-sh-lift,0 0 0 0 transparent),var(--fx-sh-glow,0 0 0 0 transparent) !important;
+  opacity:var(--fx-op,1) !important;
+  transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease !important;
+}
+.fx-hover-lift:hover,.fx-always-lift,.fx-invert-lift{--fx-ty:-6px;--fx-sh-lift:0 14px 30px rgba(0,0,0,.22);}
+.fx-invert-lift:hover{--fx-ty:0;--fx-sh-lift:0 0 0 0 transparent;}
+.fx-hover-grow:hover,.fx-always-grow,.fx-invert-grow{--fx-sc:1.03;}
+.fx-invert-grow:hover{--fx-sc:1;}
+.fx-hover-glow:hover,.fx-always-glow,.fx-invert-glow{--fx-sh-glow:0 0 18px var(--fx-glow,rgba(93,168,155,.6));}
+.fx-invert-glow:hover{--fx-sh-glow:0 0 0 0 transparent;}
+.fx-hover-fade:hover,.fx-always-fade,.fx-invert-fade{--fx-op:.72;}
+.fx-invert-fade:hover{--fx-op:1;}
+/* Cards-per-row on a card container; collapses to one column on phones. */
+.fx-cols-1,.fx-cols-2,.fx-cols-3,.fx-cols-4,.fx-cols-5,.fx-cols-6{display:grid !important;}
+.fx-cols-1{grid-template-columns:repeat(1,minmax(0,1fr)) !important;}
+.fx-cols-2{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+.fx-cols-3{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+.fx-cols-4{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
+.fx-cols-5{grid-template-columns:repeat(5,minmax(0,1fr)) !important;}
+.fx-cols-6{grid-template-columns:repeat(6,minmax(0,1fr)) !important;}
+@media (max-width:900px){
+  .fx-cols-2,.fx-cols-3,.fx-cols-4,.fx-cols-5,.fx-cols-6{grid-template-columns:1fr !important;}
+}
+/* Image motion (Images tab): subtle, slow movement for photos.
+   kenburns = slow zoom in and out · drift = slow sideways pan ·
+   float = soft up-and-down bob · pulse = gentle breathing ·
+   hoverzoom = zooms only under the mouse. Visitors who ask their
+   system for reduced motion get still images. */
+.fx-motion-kenburns,.fx-motion-drift,.fx-motion-float,.fx-motion-pulse{will-change:transform;}
+.fx-motion-kenburns{animation:fxKenburns 18s ease-in-out infinite alternate !important;}
+.fx-motion-drift{animation:fxDrift 16s ease-in-out infinite alternate !important;}
+.fx-motion-float{animation:fxFloat 6s ease-in-out infinite !important;}
+.fx-motion-pulse{animation:fxPulse 7s ease-in-out infinite !important;}
+.fx-motion-hoverzoom{transition:transform .6s ease !important;}
+.fx-motion-hoverzoom:hover{transform:scale(1.06) !important;}
+@keyframes fxKenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes fxDrift{from{transform:translateX(-2%) scale(1.05)}to{transform:translateX(2%) scale(1.05)}}
+@keyframes fxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes fxPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+/* Background-image motion (Images tab → section Motion): applied as an
+   inline animation on the element that carries the background photo. */
+@keyframes fxBgPan{from{background-position:32% 50%}to{background-position:68% 50%}}
+@keyframes fxBgZoom{from{background-size:112% auto}to{background-size:128% auto}}
+@media (prefers-reduced-motion:reduce){
+  .fx-motion-kenburns,.fx-motion-drift,.fx-motion-float,.fx-motion-pulse{animation:none !important;}
+  .fx-motion-hoverzoom,.fx-motion-hoverzoom:hover{transform:none !important;}
+  [style*="fxBgPan"],[style*="fxBgZoom"]{animation:none !important;}
+}
