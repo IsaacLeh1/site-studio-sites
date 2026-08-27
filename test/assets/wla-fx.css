@@ -1,0 +1,34 @@
+/* WLA editor — card effects (v3). Safe to edit or delete.
+   fx-hover-*  : effect appears while the mouse is over the card
+   fx-always-* : effect is permanently on
+   fx-invert-* : effect is on, and hovering turns it off
+   Effects stack: each drives its own variable, so a card can lift AND glow
+   AND fade, each with its own trigger. */
+.fx-hover-lift,.fx-always-lift,.fx-invert-lift,
+.fx-hover-grow,.fx-always-grow,.fx-invert-grow,
+.fx-hover-glow,.fx-always-glow,.fx-invert-glow,
+.fx-hover-fade,.fx-always-fade,.fx-invert-fade{
+  transform:translateY(var(--fx-ty,0)) scale(var(--fx-sc,1)) !important;
+  box-shadow:var(--fx-sh-lift,0 0 0 0 transparent),var(--fx-sh-glow,0 0 0 0 transparent) !important;
+  opacity:var(--fx-op,1) !important;
+  transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease !important;
+}
+.fx-hover-lift:hover,.fx-always-lift,.fx-invert-lift{--fx-ty:-6px;--fx-sh-lift:0 14px 30px rgba(0,0,0,.22);}
+.fx-invert-lift:hover{--fx-ty:0;--fx-sh-lift:0 0 0 0 transparent;}
+.fx-hover-grow:hover,.fx-always-grow,.fx-invert-grow{--fx-sc:1.03;}
+.fx-invert-grow:hover{--fx-sc:1;}
+.fx-hover-glow:hover,.fx-always-glow,.fx-invert-glow{--fx-sh-glow:0 0 18px var(--fx-glow,rgba(93,168,155,.6));}
+.fx-invert-glow:hover{--fx-sh-glow:0 0 0 0 transparent;}
+.fx-hover-fade:hover,.fx-always-fade,.fx-invert-fade{--fx-op:.72;}
+.fx-invert-fade:hover{--fx-op:1;}
+/* Cards-per-row on a card container; collapses to one column on phones. */
+.fx-cols-1,.fx-cols-2,.fx-cols-3,.fx-cols-4,.fx-cols-5,.fx-cols-6{display:grid !important;}
+.fx-cols-1{grid-template-columns:repeat(1,minmax(0,1fr)) !important;}
+.fx-cols-2{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+.fx-cols-3{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+.fx-cols-4{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
+.fx-cols-5{grid-template-columns:repeat(5,minmax(0,1fr)) !important;}
+.fx-cols-6{grid-template-columns:repeat(6,minmax(0,1fr)) !important;}
+@media (max-width:900px){
+  .fx-cols-2,.fx-cols-3,.fx-cols-4,.fx-cols-5,.fx-cols-6{grid-template-columns:1fr !important;}
+}
