@@ -1,0 +1,31 @@
+:root{--ink:#1c1d1d;--paper:#faf9f5;--accent:#4a8d82;--accent2:#7fb5d5;--cream:#f4f2ec;}
+*{box-sizing:border-box;margin:0}
+body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--paper);line-height:1.6}
+.wrap{width:min(1100px,92%);margin:0 auto}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4%;background:var(--ink);position:sticky;top:0;z-index:10}
+.nav .brand{color:var(--cream);font-weight:bold;text-decoration:none;font-size:1.2rem}
+.links a{color:var(--cream);text-decoration:none;margin-left:1.2rem;font-size:.95rem}
+.links a.current{color:var(--accent2)}
+.page-hero{background:var(--ink);color:var(--cream);text-align:center;padding:6rem 0 4rem;position:relative}
+.page-hero .bg,.impact .bg{position:absolute;inset:0;z-index:0}
+.page-hero .wrap,.impact .wrap{position:relative;z-index:1}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:var(--accent2);display:block}
+h1{font-size:2.8rem;margin:.5rem 0}
+.section{padding:4rem 0}
+.section--charcoal2,.section--dark{background:var(--ink);color:var(--cream)}
+.head.center{text-align:center;max-width:640px;margin:0 auto}
+h2{font-size:2rem;margin:.4rem 0 .8rem}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.svc{border:1px solid #d8d5cc;border-radius:12px;padding:2rem;text-align:center;background:#fff;color:var(--ink)}
+.svc .ico{width:56px;height:56px;transform:rotate(45deg);margin:0 auto 1.4rem;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center}
+.svc .ico .ico-glyph{transform:rotate(-45deg);min-width:26px;min-height:26px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff}
+.svc .tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem}
+.impact{text-align:center;position:relative}
+blockquote{font-size:1.8rem;font-style:italic;max-width:700px;margin:0 auto}
+.hl{color:var(--accent2)}
+.btn{display:inline-block;padding:.8rem 1.6rem;border-radius:8px;text-decoration:none;border:1px solid var(--accent);color:inherit}
+.btn--solid{background:var(--accent);color:#fff}
+footer{background:var(--ink);color:var(--cream);text-align:center;padding:2.5rem 0;margin-top:2rem}
+.fnav a{color:var(--cream);margin:0 .6rem;text-decoration:none;font-size:.9rem}
+.copy{font-size:.75rem;opacity:.6;margin-top:1rem}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr}h1{font-size:2rem}}
